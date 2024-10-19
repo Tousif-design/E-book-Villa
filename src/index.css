@@ -1,0 +1,42 @@
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Passion+One:wght@400;700;900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: "Poppins", sans-serif; /* Default font for the body */
+}
+
+/* Dark mode styles */
+body.dark {
+  background-color: #121212; /* Dark background */
+  color: #ffffff; /* Light text color */
+}
+
+body.dark a {
+  color: #bb86fc; /* Light color for links in dark mode */
+}
+
+/* Use Tailwind's utility classes for the navbar background */
+body.dark .bg-navbar {
+  background-color: #1f2937; /* Dark navbar background */
+}
+
+/* Utility to ensure text and background colors change in dark mode */
+body.dark .text-dark {
+  color: #ffffff; /* Light text color in dark mode */
+}
+
+body.dark .bg-light {
+  background-color: #1f2937; /* Light background color in dark mode */
+}
+
+/* Add other styles as needed to support dark mode */
+.transition-transform {
+  transition: transform 0.3s ease;
+}
+
+.hover\:scale-105:hover {
+  transform: scale(1.05);
+}
