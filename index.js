@@ -1,7 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
-import cors from "cors"; // Corrected CORS import
+import cors from "cors";
 import bookRoute from "./route/Book.route.js";
 import userRoute from "./route/user.route.js";
 
@@ -12,8 +12,8 @@ dotenv.config(); // Load environment variables
 // Use CORS middleware
 app.use(
   cors({
-    origin: ["https://deploy-mern-1whq.vercel.app"], // Corrected CORS origin URL format
-    methods: ["POST", "GET"], // Corrected HTTP methods (uppercase)
+    origin: ["https://deploy-mern-1whq.vercel.app"],
+    methods: ["POST", "GET"],
     credentials: true,
   })
 );
@@ -33,8 +33,8 @@ if (!url) {
 // Connecting to MongoDB
 mongoose
   .connect(url, {
-    useNewUrlParser: true, // Ensure recommended options for Mongoose
-    useUnifiedTopology: true,
+    // Removed deprecated options
+    useCreateIndex: true, // If using MongoDB < 5.0, else you can remove
   })
   .then(() => {
     console.log("Connected to MongoDB Atlas successfully");
