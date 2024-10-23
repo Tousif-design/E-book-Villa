@@ -1,5 +1,5 @@
 import User from "../model/user.model.js";
-import bcryptjs from "bcryptjs"; // Import bcryptjs only once
+import bcrypt from "bcryptjs"; // Import bcryptjs
 
 // Signup Function
 export const signup = async (req, res) => {
@@ -19,7 +19,7 @@ export const signup = async (req, res) => {
     }
 
     // Hash the password
-    const hashedPassword = await bcryptjs.hash(password, 10);
+    const hashedPassword = await bcrypt.hash(password, 10);
 
     // Create a new user
     const newUser = new User({ fullName, email, password: hashedPassword });
@@ -35,7 +35,7 @@ export const signup = async (req, res) => {
       },
     });
   } catch (error) {
-    console.error(error);
+    console.error("Signup Error:", error); // Enhanced logging
     res.status(500).json({ message: "Internal server error" });
   }
 };
@@ -52,7 +52,7 @@ export const login = async (req, res) => {
     }
 
     // Compare the password
-    const isMatch = await bcryptjs.compare(password, user.password);
+    const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(400).json({ message: "Invalid username or password" });
     }
@@ -67,7 +67,7 @@ export const login = async (req, res) => {
       },
     });
   } catch (error) {
-    console.error("Error: " + error.message);
+    console.error("Login Error:", error.message); // Enhanced logging
     return res.status(500).json({ message: "Internal server error" });
   }
 };
